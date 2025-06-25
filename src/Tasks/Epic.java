@@ -1,9 +1,10 @@
-// Подкласс Epic, представляющий крупную задачу-эпик
+package Tasks;// Подкласс Tasks.Epic, представляющий крупную задачу-эпик
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Epic extends Task {
-    private List<Integer> subtaskIds; // список ID подзадач// Можно добавить дополнительные поля или методы для эпика
+    public List<Integer> subtaskIds; //
 
     public Epic(int id, String name, String description) {
         super(id, name, description, Status.NEW);
@@ -21,5 +22,10 @@ public class Epic extends Task {
     }
     public void removeSubtaskId(int subtaskId) {
        subtaskIds.remove(Integer.valueOf(subtaskId));
+    }
+
+    @Override
+    public void setStatus(Status status) {
+        super.setStatus(status);
     }
 }

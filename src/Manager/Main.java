@@ -1,3 +1,10 @@
+package Manager;
+
+import Tasks.Epic;
+import Tasks.Status;
+import Tasks.Subtask;
+import Tasks.Task;
+
 import java.util.List;
 
 public class Main {
@@ -67,9 +74,9 @@ public class Main {
         subtask3.setStatus(Status.DONE);
 
         // Обновляем подзадачи в менеджере
-        taskManager.updateTask(subtask1);
-        taskManager.updateTask(subtask2);
-        taskManager.updateTask(subtask3);
+        taskManager.updateSubtask(subtask1);
+        taskManager.updateSubtask(subtask2);
+        taskManager.updateSubtask(subtask3);
 
         // После обновления статусов распечатываем снова
         System.out.println("После изменения статусов:");
@@ -86,7 +93,7 @@ public class Main {
 
         // Обновляем статус эпиков по их подзадачам
         for (Epic ep : taskManager.getAllEpics()) {
-            taskManager.refreshEpicStatus(ep.getId());
+            taskManager.updateEpicStatus(ep);
         }
 
         // Распечатываем обновленные эпики и их подзадачи с актуальными статусами
