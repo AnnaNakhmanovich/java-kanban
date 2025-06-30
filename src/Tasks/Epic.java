@@ -1,4 +1,4 @@
-package Tasks;// Подкласс Tasks.Epic, представляющий крупную задачу-эпик
+package Tasks;
 
 import java.util.ArrayList;
 import java.util.List;

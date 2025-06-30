@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Поехали!");
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
 
         // Создаем две задачи
         Task task1 = new Task(0, "Задача 1", "Описание задачи 1", Status.NEW);
@@ -91,11 +91,6 @@ public class Main {
             System.out.println(s);
         }
 
-        // Обновляем статус эпиков по их подзадачам
-        for (Epic ep : taskManager.getAllEpics()) {
-            taskManager.updateEpicStatus(ep);
-        }
-
         // Распечатываем обновленные эпики и их подзадачи с актуальными статусами
         System.out.println("\nОбновленные эпики после пересчета статусов:");
         for (Epic ep : taskManager.getAllEpics()) {
@@ -108,5 +103,36 @@ public class Main {
             System.out.println();
         }
 
+        // Демонстрация истории просмотров
+        System.out.println("\nВызов task1");
+        taskManager.getTask(task1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\nВызов epic1");
+        taskManager.getEpic(epic1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\nВызов subtask1");
+        taskManager.getSubtask(subtask1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\nВызов task2:");
+        taskManager.getTask(task2.getId());
+        printHistory(taskManager);
+
+        System.out.println("\nВызов epic2");
+        taskManager.getEpic(epic2.getId());
+        printHistory(taskManager);
+
+        System.out.println("\nВызов subtask3");
+        taskManager.getSubtask(subtask3.getId());
+        printHistory(taskManager);
     }
-}
+
+        private static void printHistory(TaskManager manager) {
+            System.out.println("История просмотров:");
+            for (Task task : manager.getHistory()) {
+                System.out.println(task);
+            }
+        }
+    }
