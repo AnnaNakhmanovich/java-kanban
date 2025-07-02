@@ -1,10 +1,10 @@
-package Tasks;
+package tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Epic extends Task {
-    public List<Integer> subtaskIds; //
+    private List<Integer> subtaskIds; //
 
     public Epic(int id, String name, String description) {
         super(id, name, description, Status.NEW);
@@ -16,7 +16,7 @@ public class Epic extends Task {
     }
 
     public void addSubtaskId(int subtaskId) {
-        if (!subtaskIds.contains(subtaskId)) {
+        if (subtaskId != getId() && !subtaskIds.contains(subtaskId)) {
             subtaskIds.add(subtaskId);
         }
     }

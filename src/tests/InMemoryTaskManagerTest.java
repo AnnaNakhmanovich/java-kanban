@@ -1,11 +1,11 @@
-package Tests;
+package tests;
 
-import Manager.Managers;
-import Manager.TaskManager;
-import Tasks.Task;
-import Tasks.Epic;
-import Tasks.Subtask;
-import Tasks.Status;
+import manager.Managers;
+import manager.TaskManager;
+import tasks.Task;
+import tasks.Epic;
+import tasks.Subtask;
+import tasks.Status;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,19 +1,20 @@
-package Manager;
+package manager;
 
-import Tasks.Status;
-import Tasks.Task;
-import Tasks.Epic;
-import Tasks.Subtask;
+import tasks.Status;
+import tasks.Task;
+import tasks.Epic;
+import tasks.Subtask;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 
 public class InMemoryTaskManager implements TaskManager {
 
     public int nextId = 1;
-    public HashMap<Integer, Task> tasks = new HashMap<>();
-    public HashMap<Integer, Epic> epics = new HashMap<>();
-    public HashMap<Integer, Subtask> subtasks = new HashMap<>();
+    public Map<Integer, Task> tasks = new HashMap<>();
+    public Map<Integer, Epic> epics = new HashMap<>();
+    public Map<Integer, Subtask> subtasks = new HashMap<>();
     private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     // Создание новой задачи
@@ -118,23 +119,29 @@ public class InMemoryTaskManager implements TaskManager {
     // Метод для получения текущего статуса задачи по ID
     @Override
     public Task getTask(int id) {
-        if (tasks.get(id) != null) getHistory();
-        historyManager.add(tasks.get(id));
-        return tasks.get(id);
+        Task task = tasks.get(id);
+        if (task != null){
+        historyManager.add(task);
+    }
+        return task;
     }
 
     @Override
     public Epic getEpic(int id) {
-        if (epics.get(id) != null) getHistory();
-        historyManager.add(epics.get(id));
-        return epics.get(id);
+        Epic epic = epics.get(id);
+        if (epic != null) {
+          historyManager.add(epic);
+        }
+        return epic;
     }
 
     @Override
     public Subtask getSubtask(int id) {
-        if (subtasks.get(id) != null) getHistory();
-        historyManager.add(subtasks.get(id));
-        return subtasks.get(id);
+        Subtask subtask = subtasks.get(id);
+        if (subtask != null) {
+        historyManager.add(subtask);
+    }
+        return subtask;
     }
 
     @Override
@@ -193,7 +200,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
     // Метод для автоматического обновления статуса эпика по его подзадачам
-    protected void updateEpicStatus(Epic epic) {
+    private void updateEpicStatus(Epic epic) {
         // Проверка на null
         if (epic == null) return;
 

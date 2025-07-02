@@ -1,11 +1,13 @@
-package Tasks;
+package tasks;
 
 public class Subtask extends Task {
     private int epicId;
 
     public Subtask(int id, String name, String description, Status status, int epicId) {
         super(id, name, description, status);
-        this.epicId = epicId;
+        if (id != epicId) {
+            this.epicId = epicId;
+        }
     }
 
     public int getEpicId() {
@@ -13,7 +15,9 @@ public class Subtask extends Task {
     }
 
     public void setEpicId(int epicId) {
-        this.epicId = epicId;
+        if (getId() != epicId) {
+            this.epicId = epicId;
+        }
     }
 
     @Override

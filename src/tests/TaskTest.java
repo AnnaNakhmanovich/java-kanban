@@ -1,10 +1,10 @@
-package Tests;
+package tests;
 
-import Tasks.Task;
-import Tasks.Epic;
-import Tasks.Subtask;
-import Tasks.Status;
-import org.testng.annotations.Test;
+import tasks.Task;
+import tasks.Epic;
+import tasks.Subtask;
+import tasks.Status;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
