@@ -92,9 +92,7 @@ public class TestHistoryRemoval {
     void testHistoryOrderAfterDuplicateViews() {
         taskManager.getTask(task1.getId());
         taskManager.getTask(task2.getId());
-
         taskManager.getTask(task1.getId());
-
         List<Task> history = taskManager.getHistory();
 
         // Проверяем порядок: task2 должен быть первым, task1 - последним
