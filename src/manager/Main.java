@@ -170,7 +170,7 @@ public class Main {
         System.out.println("\nПоехали!");
     }
 
-        private static void printHistory (TaskManager manager){
+        private static void printHistory (TaskManager manager) {
             System.out.println("История просмотров:");
             List<Task> history = manager.getHistory();
             if (history.isEmpty()) {
@@ -184,7 +184,7 @@ public class Main {
             }
         }
 
-        private static String getTaskType (Task task){
+        private static String getTaskType (Task task) {
             if (task instanceof Epic) {
                 return "ЭПИК";
             } else if (task instanceof Subtask) {
