@@ -60,7 +60,6 @@ public class Task {
         return Objects.hash(id);
     }
 
-    // Метод для отображения информации о задаче
     @Override
     public String toString() {
         return "Tasks.Task{" +

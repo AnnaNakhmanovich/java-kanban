@@ -7,14 +7,14 @@ import tasks.Task;
 import java.util.List;
 
 public interface TaskManager {
-    // Создание новой задачи
+
     Task createTask(Task task);
 
     Epic createEpic(Epic epic);
 
     Subtask createSubtask(Subtask subtask);
 
-    // Получение списка всех задач
+
     List<Task> getAllTasks();
 
     List<Epic> getAllEpics();
@@ -37,14 +37,13 @@ public interface TaskManager {
 
     Subtask getSubtask(int id);
 
-    // Удаление по id
+
     void deleteTaskById(int id);
 
     void deleteEpicById(int id);
 
     void deleteSubtaskById(int id);
 
-    // Удаление всех задач
     void deleteAllTasks();
 
     void deleteAllEpics();

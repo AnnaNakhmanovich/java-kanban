@@ -127,12 +127,70 @@ public class Main {
         System.out.println("\nВызов subtask3");
         taskManager.getSubtask(subtask3.getId());
         printHistory(taskManager);
+
+
+        System.out.println("\nВызов getSubtask(subtask3.getId()):");
+        taskManager.getSubtask(subtask3.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n=== ДОПОЛНИТЕЛЬНЫЙ СЦЕНАРИЙ ТЕСТИРОВАНИЯ ИСТОРИИ ===");
+
+        System.out.println("\n--- Тест 1: Повторные запросы task1 ---");
+        taskManager.getTask(task1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n--- Тест 2: Повторные запросы epic1 ---");
+        taskManager.getEpic(epic1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n--- Тест 3: Повторные запросы subtask1 ---");
+        taskManager.getSubtask(subtask1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n--- Тест 4: Еще раз task1 ---");
+        taskManager.getTask(task1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n=== ТЕСТИРОВАНИЕ УДАЛЕНИЯ ===");
+
+        System.out.println("\n--- Тест 5: Удаляем task2 ---");
+        taskManager.deleteTaskById(task2.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n--- Тест 6: Удаляем epic1 с подзадачами ---");
+        taskManager.deleteEpicById(epic1.getId());
+        printHistory(taskManager);
+
+        System.out.println("\n=== ФИНАЛЬНАЯ ПРОВЕРКА ===");
+        System.out.println("Оставшиеся объекты:");
+        System.out.println("Все задачи: " + taskManager.getAllTasks().size());
+        System.out.println("Все эпики: " + taskManager.getAllEpics().size());
+        System.out.println("Все подзадачи: " + taskManager.getAllSubtasks().size());
+
+        System.out.println("\nПоехали!");
     }
 
         private static void printHistory(TaskManager manager) {
             System.out.println("История просмотров:");
-            for (Task task : manager.getHistory()) {
-                System.out.println(task);
+            List<Task> history = manager.getHistory();
+            if (history.isEmpty()) {
+                System.out.println("  История пуста");
+            } else {
+                for (int i = 0; i < history.size(); i++) {
+                    Task task = history.get(i);
+                    String type = getTaskType(task);
+                    System.out.println("  " + (i + 1) + ". " + type + " ID:" + task.getId() + " - " + task.getName());
+                }
+            }
+        }
+
+        private static String getTaskType(Task task) {
+            if (task instanceof Epic) {
+                return "ЭПИК";
+            } else if (task instanceof Subtask) {
+                return "ПОДЗАДАЧА";
+            } else {
+                return "ЗАДАЧА";
             }
         }
     }
